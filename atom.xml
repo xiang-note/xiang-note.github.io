@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[記筆記，學所學]]></title>
+  <link href="https://xiang-note.github.io/atom.xml" rel="self"/>
+  <link href="https://xiang-note.github.io/"/>
+  <updated>2019-03-31T20:08:48+08:00</updated>
+  <id>https://xiang-note.github.io/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.mweb.im">MWeb</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[利用 GitHub Pages 建立免費靜態網站]]></title>
+    <link href="https://xiang-note.github.io/15540063071124.html"/>
+    <updated>2019-03-31T12:25:07+08:00</updated>
+    <id>https://xiang-note.github.io/15540063071124.html</id>
+    <content type="html"><![CDATA[
+<p>一直以來想用 <a href="https://pages.github.com">GitHub Pages</a> 建立個筆記網站，這次就順手做個歷程記錄。</p>
+
+<h2 id="toc_0">事前準備</h2>
+
+<p>需要先有一個 <a href="https://github.com">GitHub</a> 帳號，沒有的可以先去 <a href="https://github.com/join">註冊</a> 一個。</p>
+
+<h2 id="toc_1">建立一個 Repository</h2>
+
+<p><img src="media/15540063071124/15540242718149.jpg" alt=""/></p>
+
+<ol>
+<li>建立新 Repository</li>
+<li>輸入 Repository 名稱 <code>{username}.github.io</code></li>
+<li>直接創建即可</li>
+</ol>
+
+<blockquote>
+<p><code>{username}</code> 為你的 <a href="https://github.com">GitHub</a> 帳號名稱</p>
+</blockquote>
+
+<h2 id="toc_2">建立內容</h2>
+
+<p>以下使用 <code>xiang-note</code> 當作帳號示範</p>
+
+<h3 id="toc_3">Clone Repository</h3>
+
+<pre><code class="language-shell">git clone https://github.com/xiang-note/xiang-note.github.io.git
+</code></pre>
+
+<h3 id="toc_4">加入內容</h3>
+
+<pre><code class="language-shell">cd xiang-note.github.io
+
+# ~/xiang-note.github.io
+echo &quot;Hello GitHub Pages&quot; &gt; index.html
+</code></pre>
+
+<h3 id="toc_5">Push</h3>
+
+<pre><code class="language-shell">git add .
+git commit -m &quot;First commit&quot;
+git push
+</code></pre>
+
+<h2 id="toc_6">頁面測試</h2>
+
+<p>最後打開網頁 <code>https://xiang-note.github.io</code></p>
+
+<p><img src="media/15540063071124/15540304432095.jpg" alt=""/></p>
+
+<p>看到這個畫面代表成功。</p>
+
+<h2 id="toc_7">結論</h2>
+
+<p>整體操作上來說相當簡單，只要建立好對應名稱的 Repository 後，<a href="https://pages.github.com">GitHub Pages</a> 就會自動把網址對應到 Repository 了。</p>
+
+]]></content>
+  </entry>
+  
+</feed>
