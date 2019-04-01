@@ -47,6 +47,8 @@
         <li><label>github</label></li>
 
           
+            <li><a title="在 Github Pages 使用自訂 Domain" href="15541079657146.html">在 Github Pages 使用自訂 Domain</a></li>
+          
             <li><a title="利用 GitHub Pages 建立免費靜態網站" href="15540063071124.html">利用 GitHub Pages 建立免費靜態網站</a></li>
           
 
@@ -68,6 +70,8 @@
                     
                       <li class="side-title"><span>github</span></li>
                         
+                          <li><a title="在 Github Pages 使用自訂 Domain" href="15541079657146.html">在 Github Pages 使用自訂 Domain</a></li>
+                        
                           <li><a title="利用 GitHub Pages 建立免費靜態網站" href="15540063071124.html">利用 GitHub Pages 建立免費靜態網站</a></li>
                         
 
@@ -84,66 +88,124 @@
 
 	
 		<div class="markdown-body">
-		<h1>利用 GitHub Pages 建立免費靜態網站</h1>
+		<h1>在 Github Pages 使用自訂 Domain</h1>
 
-		<p>一直以來想用 <a href="https://pages.github.com">GitHub Pages</a> 建立個筆記網站，這次就順手做個歷程記錄。</p>
+		<p>考量到未來維護及延續性，決定買了一個新網域 <code>xnote.dev</code> 來替換掉醜醜的 <code>xiang-note.github.io</code>。</p>
 
 <h2 id="toc_0">事前準備</h2>
 
-<p>需要先有一個 <a href="https://github.com">GitHub</a> 帳號，沒有的可以先去 <a href="https://github.com/join">註冊</a> 一個。</p>
+<p>先準備一個網域名稱</p>
 
-<h2 id="toc_1">建立一個 Repository</h2>
+<p>可以從 <a href="https://tw.godaddy.com/">GoDaddy</a>、<a href="https://www.namecheap.com/">NameCheap</a>、<a href="https://domains.google/">Google Domains</a>、<a href="https://www.gandi.net/">Gandi</a> 等等域名服務商購買。</p>
 
-<p><img src="media/15540063071124/15540242718149.jpg" alt=""/></p>
+<p>以前用過大大小小的域名服務商，這次想嘗試不同介面體驗看看。<br/>
+原本想要從 <code>Google Domains</code> 購買，但是目前臺灣不在開放名單中，又不想亂填地址只好選擇其它方案。</p>
 
-<ol>
-<li>建立新 Repository</li>
-<li>輸入 Repository 名稱 <code>{username}.github.io</code></li>
-<li>直接創建即可</li>
-</ol>
+<h2 id="toc_1">設定 CNAME</h2>
 
-<blockquote>
-<p><code>{username}</code> 為你的 <a href="https://github.com">GitHub</a> 帳號名稱</p>
-</blockquote>
+<p>設定 <code>CNAME</code> 有兩種方式</p>
 
-<h2 id="toc_2">建立內容</h2>
+<h3 id="toc_2">第一種</h3>
 
-<p>以下使用 <code>xiang-note</code> 當作帳號示範</p>
-
-<h3 id="toc_3">Clone Repository</h3>
-
-<pre><code class="language-shell">git clone https://github.com/xiang-note/xiang-note.github.io.git
-</code></pre>
-
-<h3 id="toc_4">加入內容</h3>
+<p>在 Repository 裡增加一個名為 <code>CNAME</code> 檔案，並在裡面打上想對應的網域名稱</p>
 
 <pre><code class="language-shell">cd xiang-note.github.io
 
 # ~/xiang-note.github.io
-echo &quot;Hello GitHub Pages&quot; &gt; index.html
+echo &quot;xnote.dev&quot; &gt; CNAME
 </code></pre>
 
-<h3 id="toc_5">Push</h3>
+<h3 id="toc_3">第二種</h3>
 
-<pre><code class="language-shell">git add .
-git commit -m &quot;First commit&quot;
-git push
+<p>在 <code>Github</code> Repository 中</p>
+
+<p><img src="media/15541079657146/15541243205018.jpg" alt=""/></p>
+
+<ol>
+<li>點擊 <code>Settings</code> 頁面</li>
+</ol>
+
+<p><img src="media/15541079657146/15541245081738.jpg" alt=""/></p>
+
+<ol>
+<li>在 <code>Custom domain</code> 打上對應的網域名稱</li>
+</ol>
+
+<h2 id="toc_4">設定 DNS 對應到 GitHub Pages</h2>
+
+<p>可以依據這篇的說明進行設定 <a href="https://help.github.com/en/articles/using-a-custom-domain-with-github-pages">Using a custom domain with GitHub Pages</a></p>
+
+<p>由於我這次是使用 <code>apex domain</code>，可以透過 <code>ALIAS</code>、<code>ANAME</code>、<code>A</code> 來設定，就看 <code>DNS 服務商</code> 有提供哪些來決定使用哪個。</p>
+
+<h3 id="toc_5">新增 Record</h3>
+
+<p>最推薦是使用 <code>ALIAS</code>，剛好這次使用的 <code>DNS 服務商</code> 有提供</p>
+
+<p><img src="media/15541079657146/15541251133119.jpg" alt=""/></p>
+
+<blockquote>
+<p>此動作可能要等候一段時間讓 <code>DNS</code> 同步才會生效</p>
+</blockquote>
+
+<h3 id="toc_6">進行驗證</h3>
+
+<p>透過 <code>dig</code> 指令來檢查</p>
+
+<pre><code class="language-shell">dig +noall +answer xnote.dev
+
+&gt; xnote.dev.        2118    IN  A   185.199.108.153
+&gt; xnote.dev.        2118    IN  A   185.199.111.153
+&gt; xnote.dev.        2118    IN  A   185.199.109.153
+&gt; xnote.dev.        2118    IN  A   185.199.110.153
 </code></pre>
 
-<h2 id="toc_6">頁面測試</h2>
+<p>如上述顯示即代表設定成功</p>
 
-<p>最後打開網頁 <code>https://xiang-note.github.io</code></p>
+<blockquote>
+<p>對應 IP <code>185.199.xxx.153</code> 可能會調整，實際以 <code>GitHub Pages</code> 文件為主</p>
+</blockquote>
 
-<p><img src="media/15540063071124/15540304432095.jpg" alt=""/></p>
+<h2 id="toc_7">設定 HTTPS</h2>
 
-<p>看到這個畫面代表成功。</p>
+<p>使用 <code>GitHub Pages</code> 設定 <code>HTTPS</code> 非常簡單，只要打開設定就完成了。</p>
 
-<h2 id="toc_7">結論</h2>
+<h3 id="toc_8">進行設定</h3>
 
-<p>整體操作上來說相當簡單，只要建立好對應名稱的 Repository 後，<a href="https://pages.github.com">GitHub Pages</a> 就會自動把網址對應到 Repository 了。</p>
+<p>在 <code>GitHub</code> Repository 的 <code>Settings</code> 頁</p>
+
+<p><img src="media/15541079657146/15541256529603.jpg" alt=""/></p>
+
+<ol>
+<li>打開 Enforce HTTPS</li>
+</ol>
+
+<h3 id="toc_9">進行驗證</h3>
+
+<p>使用瀏覽器打開 <code>https://xnote.dev</code> 查看憑證是否設定成功</p>
+
+<p><img src="media/15541079657146/15541266338132.jpg" alt=""/></p>
+
+<ol>
+<li>點擊鎖型符號</li>
+<li>點擊憑證</li>
+</ol>
+
+<p><img src="media/15541079657146/15541260567468.jpg" alt=""/></p>
+
+<p>憑證設定成功</p>
+
+<h2 id="toc_10">結論</h2>
+
+<ul>
+<li><code>GitHub Pages</code> 整合的非常好，只要網頁點點設定就可以處理好一堆原本複雜的事情。</li>
+<li>設定 <code>DNS</code> 時，使用 <code>dig</code> 指令很快就抓取到設定，但是 <code>GitHub</code>花了點時間等才抓到，需要等待一下</li>
+</ul>
 
 
 		</div>
+	
+
+ 
 	
 
   
