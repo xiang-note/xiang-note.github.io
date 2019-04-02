@@ -100,6 +100,59 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="15541891768250.html">
+                
+                  <h1>同台電腦使用多組 GitHub 帳號</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>由於申請一組 <code>GitHub</code> 帳號來放置筆記，但原先就有一組帳號正常在使用，造成新申請的沒辦法正常 <code>push</code> 。</p>
+
+<h2 id="toc_0">解法</h2>
+
+<p>搜尋了許多文章找到解法方法，大致原理是透過不同的 <strong>Hostname</strong> 來決定使用不同的 <strong>ssh key</strong> 進行溝通。</p>
+
+<h2 id="toc_1">產生新的 ssh key</h2>
+
+<pre><code class="language-shell">cd ~/.ssh
+
+# ~/.ssh
+ssh-keygen -t rsa -C &quot;your@email.com&quot; &quot;id_rsa_new&quot;
+</code></pre>
+
+<p>將會產生 <code>id_rsa_new</code> 及 <code>id_rsa_new.pub</code> 兩個檔案</p>
+
+<h2 id="toc_2">結論</h2>
+
+<ul>
+<li>此方法不限於使用在 <code>GitHub</code></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/4/2</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='website.html'>website</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="custom-domain.html">
                 
                   <h1>在 Github Pages 使用自訂 Domain</h1>
@@ -233,6 +286,12 @@
                 <div class="side-content">
                 <ul class="posts-list">
 	      
+		      
+			      <li class="post">
+			        <a href="15541891768250.html">同台電腦使用多組 GitHub 帳號</a>
+			      </li>
+		     
+		  
 		      
 			      <li class="post">
 			        <a href="custom-domain.html">在 Github Pages 使用自訂 Domain</a>

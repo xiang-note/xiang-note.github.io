@@ -4,13 +4,44 @@
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-02T12:46:17+08:00</updated>
+  <updated>2019-04-02T15:08:52+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[同台電腦使用多組 GitHub 帳號]]></title>
+    <link href="https://xnote.dev/15541891768250.html"/>
+    <updated>2019-04-02T15:12:56+08:00</updated>
+    <id>https://xnote.dev/15541891768250.html</id>
+    <content type="html"><![CDATA[
+<p>由於申請一組 <code>GitHub</code> 帳號來放置筆記，但原先就有一組帳號正常在使用，造成新申請的沒辦法正常 <code>push</code> 。</p>
+
+<h2 id="toc_0">解法</h2>
+
+<p>搜尋了許多文章找到解法方法，大致原理是透過不同的 <strong>Hostname</strong> 來決定使用不同的 <strong>ssh key</strong> 進行溝通。</p>
+
+<h2 id="toc_1">產生新的 ssh key</h2>
+
+<pre><code class="language-shell">cd ~/.ssh
+
+# ~/.ssh
+ssh-keygen -t rsa -C &quot;your@email.com&quot; &quot;id_rsa_new&quot;
+</code></pre>
+
+<p>將會產生 <code>id_rsa_new</code> 及 <code>id_rsa_new.pub</code> 兩個檔案</p>
+
+<h2 id="toc_2">結論</h2>
+
+<ul>
+<li>此方法不限於使用在 <code>GitHub</code></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在 Github Pages 使用自訂 Domain]]></title>
