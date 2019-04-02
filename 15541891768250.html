@@ -124,9 +124,11 @@
 
 <h2 id="toc_0">解法</h2>
 
-<p>搜尋了許多文章找到解法方法，大致原理是透過不同的 <strong>Hostname</strong> 來決定使用不同的 <strong>ssh key</strong> 進行溝通。</p>
+<p>搜尋了許多文章找到解法方法，大致原理是透過不同的 <strong>Hostname</strong> 來決定使用不同的 <strong>SSH key</strong> 進行溝通。</p>
 
-<h2 id="toc_1">產生新的 ssh key</h2>
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">產生新的 SSH key</h2>
 
 <pre><code class="language-shell">cd ~/.ssh
 
@@ -136,7 +138,92 @@ ssh-keygen -t rsa -C &quot;your@email.com&quot; &quot;id_rsa_new&quot;
 
 <p>將會產生 <code>id_rsa_new</code> 及 <code>id_rsa_new.pub</code> 兩個檔案</p>
 
-<h2 id="toc_2">結論</h2>
+<h2 id="toc_2">把 SSH key 加至 GitHub</h2>
+
+<p><img src="media/15541891768250/15541902962055.jpg" alt=""/></p>
+
+<ol>
+<li>點擊帳號頭像展開列表</li>
+<li>點選 <code>Settings</code></li>
+<li>點選 <code>SSH and GPG keys</code></li>
+<li>點擊 <code>New SSH key</code></li>
+</ol>
+
+<h3 id="toc_3">複製公鑰</h3>
+
+<p>複製 <code>~/.ssh/id_rsa_new.pub</code> 檔案內容</p>
+
+<p>若 macOS 用戶可直接透過 terminal 進行複製</p>
+
+<pre><code class="language-shell">pbcopy &lt; ~/.ssh/id_rsa_new.pub
+</code></pre>
+
+<h3 id="toc_4">新增 SSH key</h3>
+
+<p><img src="media/15541891768250/15541904795020.jpg" alt=""/></p>
+
+<ol>
+<li><code>Title</code> 打上一個提供辨識的名稱即可</li>
+<li><code>Key</code> 貼上剛剛新增的 <code>id_rsa_new.pub</code> 內容</li>
+</ol>
+
+<h2 id="toc_5">設定 git config</h2>
+
+<h3 id="toc_6">開啟檔案編輯</h3>
+
+<pre><code class="language-shell">vim ~/.ssh/config
+</code></pre>
+
+<h3 id="toc_7">填入設定內容</h3>
+
+<pre><code class="language-text">Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa
+
+Host github-new
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_new
+</code></pre>
+
+<h3 id="toc_8">進行驗證</h3>
+
+<pre><code class="language-shell">ssh -T github-new
+
+&gt; Hi xiang-note! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
+
+<h2 id="toc_9">設定 Repository 不同身份</h2>
+
+<p>可依據需求來指定不同 Repository 的身份</p>
+
+<p>在 <code>project/.git/config</code> 檔案中加入</p>
+
+<pre><code class="language-ini">[user]
+    name = xiang-note
+    email = xiang@xnote.dev
+</code></pre>
+
+<p>或是透過指令</p>
+
+<pre><code class="language-shell">git config user.name &quot;username&quot;
+git config user.email &quot;your@email.com&quot;
+</code></pre>
+
+<h2 id="toc_10">設定網址</h2>
+
+<h3 id="toc_11">重新 <code>git clone</code></h3>
+
+<pre><code class="language-shell">git clone git@github-new:xiang-note/xiang-note.github.io.git
+</code></pre>
+
+<h3 id="toc_12">修改現有 Repository</h3>
+
+<pre><code class="language-shell">git remote set-url origin git@github-new:xiang-note/xiang-note.github.io.git
+</code></pre>
+
+<h2 id="toc_13">結論</h2>
 
 <ul>
 <li>此方法不限於使用在 <code>GitHub</code></li>
