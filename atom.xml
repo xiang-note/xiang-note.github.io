@@ -4,7 +4,7 @@
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-02T15:26:54+08:00</updated>
+  <updated>2019-04-02T16:24:33+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -99,8 +99,8 @@ Host github-new
 <p>在 <code>project/.git/config</code> 檔案中加入</p>
 
 <pre><code class="language-ini">[user]
-    name = xiang-note
-    email = xiang@xnote.dev
+    name = username
+    email = your@email.com
 </code></pre>
 
 <p>或是透過指令</p>
@@ -125,6 +125,7 @@ git config user.email &quot;your@email.com&quot;
 
 <ul>
 <li>此方法不限於使用在 <code>GitHub</code></li>
+<li>此技巧也不限於用在 <code>Git</code></li>
 </ul>
 
 ]]></content>
