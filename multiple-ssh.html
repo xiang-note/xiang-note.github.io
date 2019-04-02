@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  利用 GitHub Pages 建立免費靜態網站 - 記筆記，學所學
+  同台電腦使用多組 GitHub 帳號 - 記筆記，學所學
   
   </title>
   
@@ -100,10 +100,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>利用 GitHub Pages 建立免費靜態網站</h1>
+          <h1>同台電腦使用多組 GitHub 帳號</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2019/3/31</span>
+          <span class="date">2019/4/2</span>
 
           <span>posted in&nbsp;</span> 
           
@@ -120,63 +120,115 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <p>一直以來想用 <a href="https://pages.github.com">GitHub Pages</a> 建立個筆記網站，這次就順手做個歷程記錄。</p>
+      <p>由於申請一組 <code>GitHub</code> 帳號來放置筆記，但原先就有一組帳號正常在使用，造成新申請的沒辦法正常 <code>push</code> 。</p>
+
+<h2 id="toc_0">解法</h2>
+
+<p>搜尋了許多文章找到解法方法，大致原理是透過不同的 <strong>Hostname</strong> 來決定使用不同的 <strong>SSH key</strong> 進行溝通。</p>
 
 <span id="more"></span><!-- more -->
 
-<h2 id="toc_0">事前準備</h2>
+<h2 id="toc_1">產生新的 SSH key</h2>
 
-<p>需要先有一個 <a href="https://github.com">GitHub</a> 帳號，沒有的可以先去 <a href="https://github.com/join">註冊</a> 一個。</p>
+<pre><code class="language-shell">cd ~/.ssh
 
-<h2 id="toc_1">建立一個 Repository</h2>
+# ~/.ssh
+ssh-keygen -t rsa -C &quot;your@email.com&quot; &quot;id_rsa_new&quot;
+</code></pre>
 
-<p><img src="media/15540063071124/15540242718149.jpg" alt=""/></p>
+<p>將會產生 <code>id_rsa_new</code> 及 <code>id_rsa_new.pub</code> 兩個檔案</p>
+
+<h2 id="toc_2">把 SSH key 加至 GitHub</h2>
+
+<p><img src="media/15541891768250/15541902962055.jpg" alt=""/></p>
 
 <ol>
-<li>建立新 Repository</li>
-<li>輸入 Repository 名稱 <code>{username}.github.io</code></li>
-<li>直接創建即可</li>
+<li>點擊帳號頭像展開列表</li>
+<li>點選 <code>Settings</code></li>
+<li>點選 <code>SSH and GPG keys</code></li>
+<li>點擊 <code>New SSH key</code></li>
 </ol>
 
-<blockquote>
-<p><code>{username}</code> 為你的 <a href="https://github.com">GitHub</a> 帳號名稱</p>
-</blockquote>
+<h3 id="toc_3">複製公鑰</h3>
 
-<h2 id="toc_2">建立內容</h2>
+<p>複製 <code>~/.ssh/id_rsa_new.pub</code> 檔案內容</p>
 
-<p>以下使用 <code>xiang-note</code> 當作帳號示範</p>
+<p>若 macOS 用戶可直接透過 terminal 進行複製</p>
 
-<h3 id="toc_3">Clone Repository</h3>
-
-<pre><code class="language-shell">git clone https://github.com/xiang-note/xiang-note.github.io.git
+<pre><code class="language-shell">pbcopy &lt; ~/.ssh/id_rsa_new.pub
 </code></pre>
 
-<h3 id="toc_4">加入內容</h3>
+<h3 id="toc_4">新增 SSH key</h3>
 
-<pre><code class="language-shell">cd xiang-note.github.io
+<p><img src="media/15541891768250/15541904795020.jpg" alt=""/></p>
 
-# ~/xiang-note.github.io
-echo &quot;Hello GitHub Pages&quot; &gt; index.html
+<ol>
+<li><code>Title</code> 打上一個提供辨識的名稱即可</li>
+<li><code>Key</code> 貼上剛剛新增的 <code>id_rsa_new.pub</code> 內容</li>
+</ol>
+
+<h2 id="toc_5">設定 git config</h2>
+
+<h3 id="toc_6">開啟檔案編輯</h3>
+
+<pre><code class="language-shell">vim ~/.ssh/config
 </code></pre>
 
-<h3 id="toc_5">Push</h3>
+<h3 id="toc_7">填入設定內容</h3>
 
-<pre><code class="language-shell">git add .
-git commit -m &quot;First commit&quot;
-git push
+<pre><code class="language-text">Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa
+
+Host github-new
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_new
 </code></pre>
 
-<h2 id="toc_6">頁面測試</h2>
+<h3 id="toc_8">進行驗證</h3>
 
-<p>最後打開網頁 <code>https://xiang-note.github.io</code></p>
+<pre><code class="language-shell">ssh -T github-new
 
-<p><img src="media/15540063071124/15540304432095.jpg" alt=""/></p>
+&gt; Hi xiang-note! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
 
-<p>看到這個畫面代表成功。</p>
+<h2 id="toc_9">設定 Repository 不同身份</h2>
 
-<h2 id="toc_7">結論</h2>
+<p>可依據需求來指定不同 Repository 的身份</p>
 
-<p>整體操作上來說相當簡單，只要建立好對應名稱的 Repository 後，<a href="https://pages.github.com">GitHub Pages</a> 就會自動把網址對應到 Repository 了。</p>
+<p>在 <code>project/.git/config</code> 檔案中加入</p>
+
+<pre><code class="language-ini">[user]
+    name = username
+    email = your@email.com
+</code></pre>
+
+<p>或是透過指令</p>
+
+<pre><code class="language-shell">git config user.name &quot;username&quot;
+git config user.email &quot;your@email.com&quot;
+</code></pre>
+
+<h2 id="toc_10">設定網址</h2>
+
+<h3 id="toc_11">重新 <code>git clone</code></h3>
+
+<pre><code class="language-shell">git clone git@github-new:xiang-note/xiang-note.github.io.git
+</code></pre>
+
+<h3 id="toc_12">修改現有 Repository</h3>
+
+<pre><code class="language-shell">git remote set-url origin git@github-new:xiang-note/xiang-note.github.io.git
+</code></pre>
+
+<h2 id="toc_13">結論</h2>
+
+<ul>
+<li>此方法不限於使用在 <code>GitHub</code></li>
+<li>此技巧也不限於用在 <code>Git</code></li>
+</ul>
 
 
     
@@ -187,13 +239,13 @@ git push
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="custom-domain.html" 
-          title="Previous Post: 在 Github Pages 使用自訂 Domain">&laquo; 在 Github Pages 使用自訂 Domain</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="custom-domain.html" 
+          title="Next Post: 在 Github Pages 使用自訂 Domain">在 Github Pages 使用自訂 Domain &raquo;</a>
       
       </p>
         </div>

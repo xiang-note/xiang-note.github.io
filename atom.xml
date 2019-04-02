@@ -4,7 +4,7 @@
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-02T16:24:33+08:00</updated>
+  <updated>2019-04-02T18:23:37+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -14,9 +14,9 @@
   
   <entry>
     <title type="html"><![CDATA[同台電腦使用多組 GitHub 帳號]]></title>
-    <link href="https://xnote.dev/15541891768250.html"/>
+    <link href="https://xnote.dev/multiple-ssh.html"/>
     <updated>2019-04-02T15:12:56+08:00</updated>
-    <id>https://xnote.dev/15541891768250.html</id>
+    <id>https://xnote.dev/multiple-ssh.html</id>
     <content type="html"><![CDATA[
 <p>由於申請一組 <code>GitHub</code> 帳號來放置筆記，但原先就有一組帳號正常在使用，造成新申請的沒辦法正常 <code>push</code> 。</p>
 
