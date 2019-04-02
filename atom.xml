@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-02T18:23:37+08:00</updated>
+  <updated>2019-04-02T21:55:44+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
-    
   </author>
-  <generator uri="http://www.mweb.im/">MWeb</generator>
-  
+  <generator uri="https://xnote.dev/">xnote</generator>
+
   <entry>
     <title type="html"><![CDATA[同台電腦使用多組 GitHub 帳號]]></title>
     <link href="https://xnote.dev/multiple-ssh.html"/>
@@ -130,7 +128,7 @@ git config user.email &quot;your@email.com&quot;
 
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[在 Github Pages 使用自訂 Domain]]></title>
     <link href="https://xnote.dev/custom-domain.html"/>
@@ -252,7 +250,7 @@ echo &quot;xnote.dev&quot; &gt; CNAME
 
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[利用 GitHub Pages 建立免費靜態網站]]></title>
     <link href="https://xnote.dev/github-pages.html"/>
@@ -319,5 +317,5 @@ git push
 
 ]]></content>
   </entry>
-  
+
 </feed>
