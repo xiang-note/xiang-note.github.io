@@ -3,12 +3,156 @@
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-02T21:55:55+08:00</updated>
+  <updated>2019-04-03T13:11:11+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
   </author>
   <generator uri="https://xnote.dev/">xnote</generator>
+
+  <entry>
+    <title type="html"><![CDATA[工作管理（jobs control）背景執行使用方法]]></title>
+    <link href="https://xnote.dev/jobs-control.html"/>
+    <updated>2019-04-03T21:03:14+08:00</updated>
+    <id>https://xnote.dev/jobs-control.html</id>
+    <content type="html"><![CDATA[
+<p>有時候需要遠端 ssh 同時處理多項事情，如果可以把長時間運行的任務丟到背景處理，可以省下不少時間及麻煩。</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">系列指令</h2>
+
+<ul>
+<li><code>[ctrl]-z</code></li>
+<li><code>jobs</code></li>
+<li><code>fg</code></li>
+<li><code>bg</code></li>
+<li><code>kill</code></li>
+</ul>
+
+<h2 id="toc_1">[ctrl]-z 將前台任務暫停丟到後台</h2>
+
+<p>假設今天執行一個長時間的任務</p>
+
+<pre><code class="language-shell">sh longtime.sh
+</code></pre>
+
+<p>按下 <code>[ctrl]-z</code> 後，就會出現</p>
+
+<pre><code class="language-text">&gt; [1]  + 34567 suspended  sh longtime.sh
+</code></pre>
+
+<p>代表任務被 <strong>暫停</strong> 在後台</p>
+
+<h2 id="toc_2">jobs 查看目前所有任務</h2>
+
+<p>可以透過輸入</p>
+
+<pre><code class="language-shell">jobs
+</code></pre>
+
+<p>看到目前所有任務</p>
+
+<pre><code class="language-shell">&gt; [1]  + suspended  sh longtime.sh
+</code></pre>
+
+<h2 id="toc_3">fg 取後台任務至前台</h2>
+
+<p>可以輸入指定編號來取得任務</p>
+
+<pre><code class="language-shell">fg %1
+</code></pre>
+
+<p>或是省略參數</p>
+
+<pre><code class="language-shell">fg
+</code></pre>
+
+<p>來取得<strong>上次執行</strong>任務</p>
+
+<h2 id="toc_4">bg 將後台任務繼續執行</h2>
+
+<p>由於 <code>[ctrl]-z</code> 會把任務<strong>暫停</strong>，可以透過 <code>bg</code> 指令在背景執行</p>
+
+<pre><code class="language-shell">bg %1
+</code></pre>
+
+<p>或是一樣省略參數，來執行上次任務</p>
+
+<pre><code class="language-shell">bg
+</code></pre>
+
+<p>將會出現</p>
+
+<pre><code class="language-shell">&gt; [1]  + 34567 continued  sh longtime.sh
+# 執行結束後則會出現
+&gt; [1]  + 34567 done       sh longtime.sh
+</code></pre>
+
+<h2 id="toc_5">kill 終止執行任務</h2>
+
+<p>如果想終止任務除了 <code>fg</code> 回前台按 <code>[ctrl]-c</code> 外，可以透過輸入</p>
+
+<pre><code class="language-shell">kill %1
+</code></pre>
+
+<p>來終止任務</p>
+
+<pre><code class="language-shell">&gt; [1]    34567 terminated  sh longtime.sh
+</code></pre>
+
+<p>也可以一次刪除多個任務</p>
+
+<pre><code class="language-shell">kill %1 %2 %3
+</code></pre>
+
+<blockquote>
+<p>務必注意編號為 <code>%n</code> 格式，否則 <code>kill</code> 指令會刪除到 <code>PID</code> 的 process</p>
+</blockquote>
+
+<h2 id="toc_6">同場加映</h2>
+
+<h3 id="toc_7">「+」「-」符號意義</h3>
+
+<p>當執行多個任務時，會發現最前面除了數字不同，還存在不同符號</p>
+
+<pre><code class="language-shell">jobs
+&gt; [1]    suspended  sh longtime.sh
+&gt; [2]    suspended  sh longtime.sh
+&gt; [3]    suspended  sh longtime.sh
+&gt; [4]  - suspended  sh longtime.sh
+&gt; [5]  + suspended  sh longtime.sh
+</code></pre>
+
+<p><code>+</code> 代表上次執行的任務<br/>
+<code>-</code> 代表上上次執行的任務</p>
+
+<h3 id="toc_8">「&amp;」快速背景執行</h3>
+
+<p>依上面方法，想要一個任務背景執行必需先 <code>[ctrl]-z</code> 再 <code>bg</code><br/>
+其實可以在指令最後加上 <code>&amp;</code> 來達到一樣的目的</p>
+
+<pre><code class="language-shell">sh longtime.sh &amp;
+&gt; [3] 34567
+
+jobs
+&gt; [1]  - suspended  sh longtime.sh
+&gt; [2]  + suspended  sh longtime.sh
+&gt; [3]    running    sh longtime.sh 
+</code></pre>
+
+<p>可以發現任務直接運行在背景</p>
+
+<h2 id="toc_9">結論</h2>
+
+<ul>
+<li>除了長時間運行任務外，拿來多工處理也是很方便，例如 <code>vim</code> 一半暫停出來看參數</li>
+<li>現在 <code>terminal</code> 視窗都支援多開，有時候多連幾個 <code>ssh</code> 也是不錯解決辦法</li>
+<li>背景執行還是會 <code>stdout</code> 及 <code>stderr</code> 在畫面上干擾操作，可以 <code>&gt;/dev/null 2&gt;&amp;1</code> 來丟棄訊息，或是 <code>&gt; log.txt</code> 寫入檔案方便檢查</li>
+</ul>
+
+]]></content>
+  </entry>
 
   <entry>
     <title type="html"><![CDATA[同台電腦使用多組 GitHub 帳號]]></title>
