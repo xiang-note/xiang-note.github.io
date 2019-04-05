@@ -3,7 +3,7 @@
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-05T13:36:26+08:00</updated>
+  <updated>2019-04-05T13:44:18+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -12,9 +12,9 @@
 
   <entry>
     <title type="html"><![CDATA[瞭解 PHP 現行趨勢]]></title>
-    <link href="https://xnote.dev/php-the-right-way.html"/>
+    <link href="https://xnote.dev/php-trending.html"/>
     <updated>2019-04-04T13:53:13+08:00</updated>
-    <id>https://xnote.dev/php-the-right-way.html</id>
+    <id>https://xnote.dev/php-trending.html</id>
     <content type="html"><![CDATA[
 <p><a href="https://laravel.com/">Laravel</a> 是一套 <strong>PHP Framework</strong>，理解 PHP 才可以完美駕馭。</p>
 
@@ -141,7 +141,7 @@
 <h2 id="toc_1">PHP</h2>
 
 <ul>
-<li><a href="php-the-right-way.html">瞭解 PHP 流行趨勢</a></li>
+<li><a href="php-trending.html">瞭解 PHP 流行趨勢</a></li>
 </ul>
 
 <h2 id="toc_2">Laravel</h2>
