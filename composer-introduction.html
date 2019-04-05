@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>工作管理（jobs control）背景執行使用方法 - 記筆記，學所學</title>
+    <title>Composer 依頼管理工具介紹 - 記筆記，學所學</title>
     
     
     <link href="atom.xml" rel="alternate" title="記筆記，學所學" type="application/atom+xml">
@@ -88,156 +88,190 @@
     <div class="markdown-body article-wrap">
       <div class="article">
 
-        <h1>工作管理（jobs control）背景執行使用方法</h1>
+        <h1>Composer 依頼管理工具介紹</h1>
         <div class="read-more clearfix">
-          <span class="date">2019/4/3</span>
+          <span class="date">2019/4/5</span>
 
           <span>posted in&nbsp;</span>
 
 
-          <span class="posted-in"><a href='terminal.html'>terminal</a></span>
+          <span class="posted-in"><a href='composer.html'>composer</a></span>
 
           <span class="comments">
 
-          <a href="https://xnote.dev/jobs-control.html#disqus_thread">comments</a>
+          <a href="https://xnote.dev/composer-introduction.html#disqus_thread">comments</a>
 
           </span>
         </div>
       </div>
       <div class="article-content">
-        <p>有時候需要遠端 ssh 同時處理多項事情，如果可以把長時間運行的任務丟到背景處理，可以省下不少時間及麻煩。</p>
+        <p><a href="https://getcomposer.org/">Composer</a> 是 <code>PHP</code> 的依頼套件管理工具，以自動化簡化原本需大量人工處理的工作。</p>
 
 <span id="more"></span><!-- more -->
 
-<h2 id="toc_0">系列指令</h2>
+<h2 id="toc_0">安裝</h2>
+
+<p>依據文件操作即可</p>
 
 <ul>
-<li><code>[ctrl]-z</code></li>
-<li><code>jobs</code></li>
-<li><code>fg</code></li>
-<li><code>bg</code></li>
-<li><code>kill</code></li>
+<li><a href="https://getcomposer.org/download/">https://getcomposer.org/download/</a></li>
+<li><a href="https://getcomposer.org/doc/00-intro.md">https://getcomposer.org/doc/00-intro.md</a></li>
 </ul>
 
-<h2 id="toc_1">[ctrl]-z 將前台任務暫停丟到後台</h2>
+<p>若有使用 <code>Homebrew</code> 也可以使用指令一行安裝</p>
 
-<p>假設今天執行一個長時間的任務</p>
-
-<pre><code class="language-shell">sh longtime.sh
+<pre><code class="language-shell">brew install composer
 </code></pre>
 
-<p>按下 <code>[ctrl]-z</code> 後，就會出現</p>
+<h3 id="toc_1">進行驗證</h3>
 
-<pre><code class="language-text">&gt; [1]  + 34567 suspended  sh longtime.sh
+<p>輸入以下指令，能看到下方畫面代表安裝成功</p>
+
+<pre><code class="language-shell">composer
 </code></pre>
 
-<p>代表任務被 <strong>暫停</strong> 在後台</p>
+<p><img src="media/15544521704801/15544558012589.jpg" alt=""/></p>
 
-<h2 id="toc_2">jobs 查看目前所有任務</h2>
+<h2 id="toc_2">更新</h2>
 
-<p>可以透過輸入</p>
+<p>需要更新時，只需要打指令即可</p>
 
-<pre><code class="language-shell">jobs
+<pre><code class="language-shell">composer self-update
 </code></pre>
 
-<p>看到目前所有任務</p>
+<p>若使用 <code>Homebrew</code> 則輸入</p>
 
-<pre><code class="language-shell">&gt; [1]  + suspended  sh longtime.sh
+<pre><code class="language-shell">brew upgrade composer
 </code></pre>
 
-<h2 id="toc_3">fg 取後台任務至前台</h2>
+<h2 id="toc_3">Packagist</h2>
 
-<p>可以輸入指定編號來取得任務</p>
+<p><a href="https://packagist.org/">Packagist</a> 是 <code>PHP</code> 套件倉庫中心，也是 <code>Composer</code> 主要的套件資料來源。</p>
 
-<pre><code class="language-shell">fg %1
+<p>當要尋找套件時可以先來這邊搜尋，避免重複造輪子，也可以將自己的套件發佈到此網站提供別人使用。</p>
+
+<p>也可以透過指令搜尋套件</p>
+
+<pre><code class="language-shell">composer search laravel
 </code></pre>
 
-<p>或是省略參數</p>
+<h2 id="toc_4">組成介紹</h2>
 
-<pre><code class="language-shell">fg
+<p>在一個 <code>Composer</code> 專案下，是由下列三個東西所組成的。</p>
+
+<h3 id="toc_5">composer.json</h3>
+
+<p>是一個 <code>json</code> 格式的<strong>檔案</strong>，功能是 <code>Composer</code> 的設定檔，主要提供開發人員所察看維護。</p>
+
+<p>內容包含<br/>
+ - 專案說明<br/>
+ - 依頼套件及版本號<br/>
+ - 其它設置<br/>
+ - 自訂 script 及 event hook</p>
+
+<blockquote>
+<p>此檔案會進版本控制。</p>
+</blockquote>
+
+<h3 id="toc_6">composer.lock</h3>
+
+<p>看內容也會發現是 <code>json</code> 格式的<strong>檔案</strong>，此檔案是提供<strong>軟體程式</strong>使用的，會自動維護禁止人為修改。</p>
+
+<p>用途是確切記錄安裝時詳細的版本號，可以確保多人協作或線上環境都使用同一份套件及程式碼。</p>
+
+<blockquote>
+<p>此檔案會進版本控制。</p>
+</blockquote>
+
+<h3 id="toc_7">verdor/</h3>
+
+<p>此<strong>資料夾</strong>用於存放下載依頼套件及 <code>autoload</code> 相關檔案</p>
+
+<blockquote>
+<p>此資料夾<strong>不用</strong>進版本控制。</p>
+</blockquote>
+
+<h2 id="toc_8">常用指令介紹</h2>
+
+<p>介紹實務上可能會用到的一些指令，為避免介紹失焦，各指令不會提及太深用法，會另開筆記專門講解。</p>
+
+<p>想瞭解更多可以前往 <a href="https://getcomposer.org/doc/">Composer Document</a> 查看文件。</p>
+
+<p>或是輸入指令</p>
+
+<pre><code class="language-shell">composer help {command}
 </code></pre>
 
-<p>來取得<strong>上次執行</strong>任務</p>
+<h3 id="toc_9">init [options]</h3>
 
-<h2 id="toc_4">bg 將後台任務繼續執行</h2>
+<p>交互式協助建立 <code>composer.json</code> 檔案。</p>
 
-<p>由於 <code>[ctrl]-z</code> 會把任務<strong>暫停</strong>，可以透過 <code>bg</code> 指令在背景執行</p>
+<p>當然選擇手動建立 <code>composer.json</code> 也是可以的。</p>
 
-<pre><code class="language-shell">bg %1
-</code></pre>
+<h3 id="toc_10">require [options] [--] [&lt;packages&gt;]...</h3>
 
-<p>或是一樣省略參數，來執行上次任務</p>
+<p>用於安裝依頼套件，同時也會把依頼寫入 <code>composer.json</code> 檔案。</p>
 
-<pre><code class="language-shell">bg
-</code></pre>
+<p>標準使用方式</p>
 
-<p>將會出現</p>
-
-<pre><code class="language-shell">&gt; [1]  + 34567 continued  sh longtime.sh
-# 執行結束後則會出現
-&gt; [1]  + 34567 done       sh longtime.sh
-</code></pre>
-
-<h2 id="toc_5">kill 終止執行任務</h2>
-
-<p>如果想終止任務除了 <code>fg</code> 回前台按 <code>[ctrl]-c</code> 外，可以透過輸入</p>
-
-<pre><code class="language-shell">kill %1
-</code></pre>
-
-<p>來終止任務</p>
-
-<pre><code class="language-shell">&gt; [1]    34567 terminated  sh longtime.sh
-</code></pre>
-
-<p>也可以一次刪除多個任務</p>
-
-<pre><code class="language-shell">kill %1 %2 %3
+<pre><code class="language-shell">composer require monolog/monolog
 </code></pre>
 
 <blockquote>
-<p>務必注意編號為 <code>%n</code> 格式，否則 <code>kill</code> 指令會刪除到 <code>PID</code> 的 process</p>
+<p>套件名稱後面可帶上版本號，若空會安裝最新版。</p>
 </blockquote>
 
-<h2 id="toc_6">同場加映</h2>
+<p>標示為開發環境依頼套件 <code>--dev</code>。</p>
 
-<h3 id="toc_7">「+」「-」符號意義</h3>
-
-<p>當執行多個任務時，會發現最前面除了數字不同，還存在不同符號</p>
-
-<pre><code class="language-shell">jobs
-&gt; [1]    suspended  sh longtime.sh
-&gt; [2]    suspended  sh longtime.sh
-&gt; [3]    suspended  sh longtime.sh
-&gt; [4]  - suspended  sh longtime.sh
-&gt; [5]  + suspended  sh longtime.sh
+<pre><code class="language-shell">composer require --dev fzaninotto/faker
 </code></pre>
 
-<p><code>+</code> 代表上次執行的任務<br/>
-<code>-</code> 代表上上次執行的任務</p>
+<h3 id="toc_11">install [options] [--] [&lt;packages&gt;]...</h3>
 
-<h3 id="toc_8">「&amp;」快速背景執行</h3>
+<p>依據 <code>composer.lock</code> 安裝對應版本套件，通常用於第一次建立本地環境或線上環境。</p>
 
-<p>依上面方法，想要一個任務背景執行必需先 <code>[ctrl]-z</code> 再 <code>bg</code><br/>
-其實可以在指令最後加上 <code>&amp;</code> 來達到一樣的目的</p>
+<blockquote>
+<p>若本地無 <code>composer.lock</code> 檔，會同時建立一份。</p>
+</blockquote>
 
-<pre><code class="language-shell">sh longtime.sh &amp;
-&gt; [3] 34567
+<p>標準使用方式</p>
 
-jobs
-&gt; [1]  - suspended  sh longtime.sh
-&gt; [2]  + suspended  sh longtime.sh
-&gt; [3]    running    sh longtime.sh 
+<pre><code class="language-shell">composer install
 </code></pre>
 
-<p>可以發現任務直接運行在背景</p>
+<p>有時候會在 <code>composer.json</code> 標示環境要求，但是執行 <code>composer</code> 是透過 <code>docker</code> 安裝，只是要下載套件不滿足環境要求也無妨，這時就會使用</p>
 
-<h2 id="toc_9">結論</h2>
+<pre><code class="language-shell">composer install --ignore-platform-reqs
+</code></pre>
+
+<p>來略過環境檢查。</p>
+
+<h3 id="toc_12">update [options] [--] [&lt;packages&gt;]...</h3>
+
+<p>依據 <code>composer.json</code> 版本號條件，更新條件下最新版套件，會同時更新 <code>composer.lock</code> 檔案。</p>
+
+<pre><code class="language-shell">composer update
+</code></pre>
+
+<h3 id="toc_13">dump-autoload [options]</h3>
+
+<p>重新產生 <code>autoload</code> 檔案，由於 <code>Composer</code> 會快取依頼的檔案，當修改路徑或載入，最好執行一遍重新建立快取檔。</p>
+
+<h3 id="toc_14">global &lt;command-name&gt; [&lt;args&gt;]...</h3>
+
+<p>全域專案，通常用於安裝 <code>PHP</code> 所寫的指令</p>
+
+<p>預設放在 <code>~/.composer/</code> 底下</p>
+
+<pre><code class="language-shell">composer global require laravel/installer
+</code></pre>
+
+<h2 id="toc_15">結論</h2>
 
 <ul>
-<li>除了長時間運行任務外，拿來多工處理也是很方便，例如 <code>vim</code> 一半暫停出來看參數</li>
-<li>現在 <code>terminal</code> 視窗都支援多開，有時候多連幾個 <code>ssh</code> 也是簡單快速的辦法</li>
-<li>背景執行還是會 <code>stdout</code> 及 <code>stderr</code> 在畫面上干擾操作，可以 <code>&gt;/dev/null 2&gt;&amp;1</code> 來丟棄訊息，或是 <code>&gt; log.txt</code> 寫入檔案方便檢查</li>
+<li><code>Composer</code> 對於 <code>PHP</code> 專案規模化提升提供了很大的幫助。</li>
+<li><code>Composer</code> 是現在 <code>PHP</code> 依頼管理工具的主流。</li>
+<li>大多場景下不用很深的理解就用得很好，在一開始可以不用投入太多學習資源在這邊，遇到一些特殊需求，再深入研究即可。</li>
 </ul>
 
       </div>
@@ -245,14 +279,12 @@ jobs
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
 
-            <a href="laravel-index.html" title="Previous Post: Laravel 教學資源目錄">&laquo; Laravel 教學資源目錄</a>
-
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
 
-            <a  href="multiple-ssh.html" title="Next Post: 同台電腦使用多組 GitHub 帳號">同台電腦使用多組 GitHub 帳號 &raquo;</a>
+            <a  href="php-trending.html" title="Next Post: 瞭解 PHP 現行趨勢">瞭解 PHP 現行趨勢 &raquo;</a>
 
           </p>
         </div>

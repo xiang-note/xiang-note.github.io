@@ -3,12 +3,190 @@
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-05T13:44:18+08:00</updated>
+  <updated>2019-04-05T18:59:40+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
   </author>
   <generator uri="https://xnote.dev/">xnote</generator>
+
+  <entry>
+    <title type="html"><![CDATA[Composer 依頼管理工具介紹]]></title>
+    <link href="https://xnote.dev/composer-introduction.html"/>
+    <updated>2019-04-05T16:16:10+08:00</updated>
+    <id>https://xnote.dev/composer-introduction.html</id>
+    <content type="html"><![CDATA[
+<p><a href="https://getcomposer.org/">Composer</a> 是 <code>PHP</code> 的依頼套件管理工具，以自動化簡化原本需大量人工處理的工作。</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">安裝</h2>
+
+<p>依據文件操作即可</p>
+
+<ul>
+<li><a href="https://getcomposer.org/download/">https://getcomposer.org/download/</a></li>
+<li><a href="https://getcomposer.org/doc/00-intro.md">https://getcomposer.org/doc/00-intro.md</a></li>
+</ul>
+
+<p>若有使用 <code>Homebrew</code> 也可以使用指令一行安裝</p>
+
+<pre><code class="language-shell">brew install composer
+</code></pre>
+
+<h3 id="toc_1">進行驗證</h3>
+
+<p>輸入以下指令，能看到下方畫面代表安裝成功</p>
+
+<pre><code class="language-shell">composer
+</code></pre>
+
+<p><img src="media/15544521704801/15544558012589.jpg" alt=""/></p>
+
+<h2 id="toc_2">更新</h2>
+
+<p>需要更新時，只需要打指令即可</p>
+
+<pre><code class="language-shell">composer self-update
+</code></pre>
+
+<p>若使用 <code>Homebrew</code> 則輸入</p>
+
+<pre><code class="language-shell">brew upgrade composer
+</code></pre>
+
+<h2 id="toc_3">Packagist</h2>
+
+<p><a href="https://packagist.org/">Packagist</a> 是 <code>PHP</code> 套件倉庫中心，也是 <code>Composer</code> 主要的套件資料來源。</p>
+
+<p>當要尋找套件時可以先來這邊搜尋，避免重複造輪子，也可以將自己的套件發佈到此網站提供別人使用。</p>
+
+<p>也可以透過指令搜尋套件</p>
+
+<pre><code class="language-shell">composer search laravel
+</code></pre>
+
+<h2 id="toc_4">組成介紹</h2>
+
+<p>在一個 <code>Composer</code> 專案下，是由下列三個東西所組成的。</p>
+
+<h3 id="toc_5">composer.json</h3>
+
+<p>是一個 <code>json</code> 格式的<strong>檔案</strong>，功能是 <code>Composer</code> 的設定檔，主要提供開發人員所察看維護。</p>
+
+<p>內容包含<br/>
+ - 專案說明<br/>
+ - 依頼套件及版本號<br/>
+ - 其它設置<br/>
+ - 自訂 script 及 event hook</p>
+
+<blockquote>
+<p>此檔案會進版本控制。</p>
+</blockquote>
+
+<h3 id="toc_6">composer.lock</h3>
+
+<p>看內容也會發現是 <code>json</code> 格式的<strong>檔案</strong>，此檔案是提供<strong>軟體程式</strong>使用的，會自動維護禁止人為修改。</p>
+
+<p>用途是確切記錄安裝時詳細的版本號，可以確保多人協作或線上環境都使用同一份套件及程式碼。</p>
+
+<blockquote>
+<p>此檔案會進版本控制。</p>
+</blockquote>
+
+<h3 id="toc_7">verdor/</h3>
+
+<p>此<strong>資料夾</strong>用於存放下載依頼套件及 <code>autoload</code> 相關檔案</p>
+
+<blockquote>
+<p>此資料夾<strong>不用</strong>進版本控制。</p>
+</blockquote>
+
+<h2 id="toc_8">常用指令介紹</h2>
+
+<p>介紹實務上可能會用到的一些指令，為避免介紹失焦，各指令不會提及太深用法，會另開筆記專門講解。</p>
+
+<p>想瞭解更多可以前往 <a href="https://getcomposer.org/doc/">Composer Document</a> 查看文件。</p>
+
+<p>或是輸入指令</p>
+
+<pre><code class="language-shell">composer help {command}
+</code></pre>
+
+<h3 id="toc_9">init [options]</h3>
+
+<p>交互式協助建立 <code>composer.json</code> 檔案。</p>
+
+<p>當然選擇手動建立 <code>composer.json</code> 也是可以的。</p>
+
+<h3 id="toc_10">require [options] [--] [&lt;packages&gt;]...</h3>
+
+<p>用於安裝依頼套件，同時也會把依頼寫入 <code>composer.json</code> 檔案。</p>
+
+<p>標準使用方式</p>
+
+<pre><code class="language-shell">composer require monolog/monolog
+</code></pre>
+
+<blockquote>
+<p>套件名稱後面可帶上版本號，若空會安裝最新版。</p>
+</blockquote>
+
+<p>標示為開發環境依頼套件 <code>--dev</code>。</p>
+
+<pre><code class="language-shell">composer require --dev fzaninotto/faker
+</code></pre>
+
+<h3 id="toc_11">install [options] [--] [&lt;packages&gt;]...</h3>
+
+<p>依據 <code>composer.lock</code> 安裝對應版本套件，通常用於第一次建立本地環境或線上環境。</p>
+
+<blockquote>
+<p>若本地無 <code>composer.lock</code> 檔，會同時建立一份。</p>
+</blockquote>
+
+<p>標準使用方式</p>
+
+<pre><code class="language-shell">composer install
+</code></pre>
+
+<p>有時候會在 <code>composer.json</code> 標示環境要求，但是執行 <code>composer</code> 是透過 <code>docker</code> 安裝，只是要下載套件不滿足環境要求也無妨，這時就會使用</p>
+
+<pre><code class="language-shell">composer install --ignore-platform-reqs
+</code></pre>
+
+<p>來略過環境檢查。</p>
+
+<h3 id="toc_12">update [options] [--] [&lt;packages&gt;]...</h3>
+
+<p>依據 <code>composer.json</code> 版本號條件，更新條件下最新版套件，會同時更新 <code>composer.lock</code> 檔案。</p>
+
+<pre><code class="language-shell">composer update
+</code></pre>
+
+<h3 id="toc_13">dump-autoload [options]</h3>
+
+<p>重新產生 <code>autoload</code> 檔案，由於 <code>Composer</code> 會快取依頼的檔案，當修改路徑或載入，最好執行一遍重新建立快取檔。</p>
+
+<h3 id="toc_14">global &lt;command-name&gt; [&lt;args&gt;]...</h3>
+
+<p>全域專案，通常用於安裝 <code>PHP</code> 所寫的指令</p>
+
+<p>預設放在 <code>~/.composer/</code> 底下</p>
+
+<pre><code class="language-shell">composer global require laravel/installer
+</code></pre>
+
+<h2 id="toc_15">結論</h2>
+
+<ul>
+<li><code>Composer</code> 對於 <code>PHP</code> 專案規模化提升提供了很大的幫助。</li>
+<li><code>Composer</code> 是現在 <code>PHP</code> 依頼管理工具的主流。</li>
+<li>大多場景下不用很深的理解就用得很好，在一開始可以不用投入太多學習資源在這邊，遇到一些特殊需求，再深入研究即可。</li>
+</ul>
+
+]]></content>
+  </entry>
 
   <entry>
     <title type="html"><![CDATA[瞭解 PHP 現行趨勢]]></title>
@@ -97,7 +275,7 @@
 <ul>
 <li>科技日新月異，不斷的學習對於工程師來說是很重要的事。</li>
 <li><code>PHP</code> 環境和早期開發模式大相逕庭，提供越來越多適合規模化的設計</li>
-<li>如果以前有開發過 <code>PHP</code>，請以新的思維看待 <code>PHP</code> 才不會被思想限制</li>
+<li>如果以前有開發過 <code>PHP</code>，請用新的角度看待 <code>PHP</code> 才不會被思想限制</li>
 </ul>
 
 ]]></content>
@@ -142,6 +320,7 @@
 
 <ul>
 <li><a href="php-trending.html">瞭解 PHP 流行趨勢</a></li>
+<li><a href="composer-introduction.html">Composer 依頼管理工具介紹</a></li>
 </ul>
 
 <h2 id="toc_2">Laravel</h2>
