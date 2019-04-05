@@ -3,7 +3,7 @@
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-03T22:14:28+08:00</updated>
+  <updated>2019-04-05T13:36:26+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -16,7 +16,7 @@
     <updated>2019-04-04T13:53:13+08:00</updated>
     <id>https://xnote.dev/php-the-right-way.html</id>
     <content type="html"><![CDATA[
-<p><a href="https://laravel.com/">Laravel</a> 是一套 <strong>PHP Framework</strong>，理解好 PHP 才可以完美駕馭。</p>
+<p><a href="https://laravel.com/">Laravel</a> 是一套 <strong>PHP Framework</strong>，理解 PHP 才可以完美駕馭。</p>
 
 <span id="more"></span><!-- more -->
 
@@ -26,9 +26,9 @@
 
 <p>像是 <code>PHP 5.6</code> 及 <code>PHP 7.0</code> 在 2018 年 12 月時，官方已停止支援安全性更新。但許多整合式軟體及程式寫法仍停留在舊的版本沒有適時更新。</p>
 
-<p>所幸的是，有一群熱心且經驗豐富的開發者寫了一份指南手冊，時至今日仍持續不斷的更新。</p>
-
 <h2 id="toc_1">PHP The Right Way</h2>
+
+<p>所幸的是，有一群熱心且經驗豐富的開發者寫了一份指南手冊，時至今日仍持續不斷的更新。</p>
 
 <p>無論新手老手建議至少閱讀一遍。可以先不用理解每個怎麼使用或是描述什麼，但至少先有個概念。</p>
 
@@ -96,7 +96,8 @@
 
 <ul>
 <li>科技日新月異，不斷的學習對於工程師來說是很重要的事。</li>
-<li><code>PHP</code> 環境和早期開發模式大相逕庭，提供越來越多規模化的設計</li>
+<li><code>PHP</code> 環境和早期開發模式大相逕庭，提供越來越多適合規模化的設計</li>
+<li>如果以前有開發過 <code>PHP</code>，請以新的思維看待 <code>PHP</code> 才不會被思想限制</li>
 </ul>
 
 ]]></content>
@@ -133,7 +134,8 @@
 <p>所以此系列不適合</p>
 
 <ul>
-<li>快速上手 <code>Laravel</code></li>
+<li>想快速上手實戰 <code>Laravel</code></li>
+<li>系統性的學習</li>
 </ul>
 
 <h2 id="toc_1">PHP</h2>
