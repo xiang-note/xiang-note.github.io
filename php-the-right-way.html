@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>記筆記，學所學</title>
+    <title>瞭解 PHP 現行趨勢 - 記筆記，學所學</title>
     
     
     <link href="atom.xml" rel="alternate" title="記筆記，學所學" type="application/atom+xml">
@@ -79,257 +79,141 @@
 
 
  <script type="text/javascript">
-	$(function(){
-		$('#menu_item_index').addClass('is_active');
-	});
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
 </script>
 <div class="row">
-	<div class="large-8 medium-8 columns">
-		<div class="markdown-body home-categories">
+  <div class="large-8 medium-8 columns">
+    <div class="markdown-body article-wrap">
+      <div class="article">
 
-			<div class="article">
-        <a class="clearlink" href="php-the-right-way.html">
-
-          <h1>瞭解 PHP 現行趨勢</h1>
-          <div class="a-content">
-
-            <div class="a-content-text">
-
-              <p><a href="https://laravel.com/">Laravel</a> 是一套 <strong>PHP Framework</strong>，理解好 PHP 才可以完美駕馭。</p>
-
-
-
-            </div>
-          </div>
-        </a>
+        <h1>瞭解 PHP 現行趨勢</h1>
         <div class="read-more clearfix">
-          <div class="more-left left">
+          <span class="date">2019/4/4</span>
 
-            <a href="php-the-right-way.html">Read more</a>&nbsp;&nbsp;
-
-            <span class="date">2019/4/4</span>
-<span>posted in&nbsp;</span>
-
-				    <span class="posted-in"><a href='php.html'>php</a></span>
-
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-
-              <a href="https://xnote.dev/php-the-right-way.html#disqus_thread">comments</a>
+          <span>posted in&nbsp;</span>
 
 
-            </span>
-          </div>
+          <span class="posted-in"><a href='php.html'>php</a></span>
+
+          <span class="comments">
+
+          <a href="https://xnote.dev/php-the-right-way.html#disqus_thread">comments</a>
+
+          </span>
         </div>
       </div>
+      <div class="article-content">
+        <p><a href="https://laravel.com/">Laravel</a> 是一套 <strong>PHP Framework</strong>，理解好 PHP 才可以完美駕馭。</p>
 
-			<div class="article">
-        <a class="clearlink" href="laravel-index.html">
+<span id="more"></span><!-- more -->
 
-          <h1>Laravel 教學資源目錄</h1>
-          <div class="a-content">
+<h2 id="toc_0">歷史背景</h2>
 
-            <div class="a-content-text">
+<p>PHP 發展至今已超過 20 個年頭（since 1995），網路上充滿過時的文章，容易學習到過時及不安全的寫法。</p>
 
-              <p>自 <strong>2013</strong> 年末接觸 <a href="https://laravel.com/">Laravel</a> 開始，就被優雅的寫法及架構設計所吸引，至今從零到有開發過許多專案，學習並一同成長至今，也很高興看見了 <a href="https://www.facebook.com/groups/laravel.tw/">Laravel 臺灣</a> 在臺灣技術圈的蓬勃發展。</p>
+<p>像是 <code>PHP 5.6</code> 及 <code>PHP 7.0</code> 在 2018 年 12 月時，官方已停止支援安全性更新。但許多整合式軟體及程式寫法仍停留在舊的版本沒有適時更新。</p>
 
-<p>這些年來累積不少的經驗，希望透過筆記整理下來，讓對 <a href="https://laravel.com/docs/master">Laravel</a> 有興趣的人有更多的瞭解。</p>
+<p>所幸的是，有一群熱心且經驗豐富的開發者寫了一份指南手冊，時至今日仍持續不斷的更新。</p>
 
+<h2 id="toc_1">PHP The Right Way</h2>
 
+<p>無論新手老手建議至少閱讀一遍。可以先不用理解每個怎麼使用或是描述什麼，但至少先有個概念。</p>
 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
+<p><a href="https://phptherightway.com/">PHP The Right Way</a></p>
 
-            <a href="laravel-index.html">Read more</a>&nbsp;&nbsp;
+<blockquote>
+<p>裡面有多種翻譯版本，注意翻譯版本可能沒有即時的同步更新<br/>
+建議參照原文閱讀或直接閱讀原文</p>
+</blockquote>
 
-            <span class="date">2019/4/4</span>
-<span>posted in&nbsp;</span>
+<h2 id="toc_2">關注最新版本</h2>
 
-				    <span class="posted-in"><a href='laravel.html'>laravel</a></span>
+<p>定期關注最新版本是很有幫助的，瞭解目前程式語言最新動向，並替未來做準備。</p>
 
-          </div>
-          <div class="more-right right">
-            <span class="comments">
+<p><a href="https://www.php.net/supported-versions.php">Support version</a><br/>
+<a href="https://www.php.net/releases/">PHP releases</a></p>
 
-              <a href="https://xnote.dev/laravel-index.html#disqus_thread">comments</a>
+<p>經常關注新知有幾項好處</p>
 
+<ol>
+<li><strong>避免用到不合時的技術</strong>：以大部份程式語言來說，在淘汰某項功能之前，會先公告在下版被<strong>標為棄用</strong>，並在下下版<strong>移除功能</strong>，可及早改善寫法來減少技術債。</li>
+<li><strong>學習新的解決方案</strong>：每個新功能推出時，都是為了解決過去的痛點，可以瞭解到痛點原因及為何採用這個解決方案，提升自我視野。</li>
+<li><strong>安排更新計劃</strong>：一個活躍的組織，會不斷的疊代軟體版本，隨著不斷更新勢必會汰換舊版並停止安全性更新，及早安排更新計劃可免於漏洞導致的安全危機。</li>
+</ol>
 
-            </span>
-          </div>
-        </div>
+<blockquote>
+<p>關注最新版本並非一昧的將環境提升至最新版本，每次變更都是一次風險，需綜合評估來安排更新計劃</p>
+</blockquote>
+
+<h2 id="toc_3">過去版本演進</h2>
+
+<p>除了關注未來，瞭解歷史同等重要。觀察過去也可以得到相當多的訊息。</p>
+
+<ul>
+<li><a href="https://www.php.net/releases/7_3_0.php">PHP 7.3 release</a></li>
+<li><a href="https://www.php.net/releases/7_2_0.php">PHP 7.2 release</a></li>
+<li><a href="https://www.php.net/releases/7_1_0.php">PHP 7.1 release</a></li>
+<li><a href="https://www.php.net/releases/7_0_0.php">PHP 7.0 release</a></li>
+</ul>
+
+<h2 id="toc_4">關注 PHP-FIG 規範</h2>
+
+<p>早期組識散亂，缺乏規範導致大家不斷重複造輪子，以及整合不易，因此有了 <a href="https://www.php-fig.org/">PHP-FIG</a> 組織的誕生。</p>
+
+<p>比較重要的規範如下</p>
+
+<ul>
+<li><a href="https://www.php-fig.org/psr/psr-1/">PSR-1: Basic Coding Standard</a></li>
+<li><a href="https://www.php-fig.org/psr/psr-2/">PSR-2: Coding Style Guide</a></li>
+<li><a href="https://www.php-fig.org/psr/psr-4/">PSR-4: Autoloader</a></li>
+</ul>
+
+<blockquote>
+<p><code>PSR-0</code> 已棄用，有興趣的人可以搜尋一下背景故事</p>
+</blockquote>
+
+<h2 id="toc_5">關注熱門 Package</h2>
+
+<p>透過研究 <code>open source</code> 可以學習別人思想及構架，自我學習成長。</p>
+
+<p><a href="https://packagist.org/explore/popular">Packagist</a><br/>
+<a href="https://github.com/trending/php">GitHub trending</a></p>
+
+<h2 id="toc_6">結論</h2>
+
+<ul>
+<li>科技日新月異，不斷的學習對於工程師來說是很重要的事。</li>
+<li><code>PHP</code> 環境和早期開發模式大相逕庭，提供越來越多規模化的設計</li>
+</ul>
+
       </div>
-
-			<div class="article">
-        <a class="clearlink" href="jobs-control.html">
-
-          <h1>工作管理（jobs control）背景執行使用方法</h1>
-          <div class="a-content">
-
-            <div class="a-content-text">
-
-              <p>有時候需要遠端 ssh 同時處理多項事情，如果可以把長時間運行的任務丟到背景處理，可以省下不少時間及麻煩。</p>
-
-
-
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-
-            <a href="jobs-control.html">Read more</a>&nbsp;&nbsp;
-
-            <span class="date">2019/4/3</span>
-<span>posted in&nbsp;</span>
-
-				    <span class="posted-in"><a href='terminal.html'>terminal</a></span>
-
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-
-              <a href="https://xnote.dev/jobs-control.html#disqus_thread">comments</a>
-
-
-            </span>
-          </div>
-        </div>
-      </div>
-
-			<div class="article">
-        <a class="clearlink" href="multiple-ssh.html">
-
-          <h1>同台電腦使用多組 GitHub 帳號</h1>
-          <div class="a-content">
-
-            <div class="a-content-text">
-
-              <p>由於申請一組 <code>GitHub</code> 帳號來放置筆記，但原先就有一組帳號正常在使用，造成新申請的沒辦法正常 <code>push</code> 。</p>
-
-<h2 id="toc_0">解法</h2>
-
-<p>搜尋了許多文章找到解法方法，大致原理是透過不同的 <strong>Hostname</strong> 來決定使用不同的 <strong>SSH key</strong> 進行溝通。</p>
-
-
-
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-
-            <a href="multiple-ssh.html">Read more</a>&nbsp;&nbsp;
-
-            <span class="date">2019/4/2</span>
-<span>posted in&nbsp;</span>
-
-				    <span class="posted-in"><a href='website.html'>website</a></span>
-
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-
-              <a href="https://xnote.dev/multiple-ssh.html#disqus_thread">comments</a>
-
-
-            </span>
-          </div>
-        </div>
-      </div>
-
-			<div class="article">
-        <a class="clearlink" href="custom-domain.html">
-
-          <h1>在 Github Pages 使用自訂 Domain</h1>
-          <div class="a-content">
-
-            <div class="a-content-text">
-
-              <p>考量到未來維護及延續性，決定買了一個新網域 <code>xnote.dev</code> 來替換掉醜醜的 <code>xiang-note.github.io</code>。</p>
-
-
-
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-
-            <a href="custom-domain.html">Read more</a>&nbsp;&nbsp;
-
-            <span class="date">2019/4/1</span>
-<span>posted in&nbsp;</span>
-
-				    <span class="posted-in"><a href='website.html'>website</a></span>
-
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-
-              <a href="https://xnote.dev/custom-domain.html#disqus_thread">comments</a>
-
-
-            </span>
-          </div>
-        </div>
-      </div>
-
-			<div class="article">
-        <a class="clearlink" href="github-pages.html">
-
-          <h1>利用 GitHub Pages 建立免費靜態網站</h1>
-          <div class="a-content">
-
-            <div class="a-content-text">
-
-              <p>一直以來想用 <a href="https://pages.github.com">GitHub Pages</a> 建立個筆記網站，這次就順手做個歷程記錄。</p>
-
-
-
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-
-            <a href="github-pages.html">Read more</a>&nbsp;&nbsp;
-
-            <span class="date">2019/3/31</span>
-<span>posted in&nbsp;</span>
-
-				    <span class="posted-in"><a href='website.html'>website</a></span>
-
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-
-              <a href="https://xnote.dev/github-pages.html#disqus_thread">comments</a>
-
-
-            </span>
-          </div>
-        </div>
-      </div>
-
-			<div class="row">
-			  <div class="large-6 columns">
-          <p class="text-left" style="padding-top:25px;">
+      <div class="row">
+        <div class="large-6 columns">
+          <p class="text-left" style="padding:15px 0px;">
 
           </p>
-			  </div>
-			  <div class="large-6 columns">
-          <p class="text-right" style="padding-top:25px;">
+        </div>
+        <div class="large-6 columns">
+          <p class="text-right" style="padding:15px 0px;">
+
+            <a  href="laravel-index.html" title="Next Post: Laravel 教學資源目錄">Laravel 教學資源目錄 &raquo;</a>
 
           </p>
-			  </div>
-			</div>
-		</div>
-	</div>
-<!-- sidebar -->
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          <div id="disqus_thread"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- in sidebar -->
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">
     <div id="sidebar" class="sidebar">

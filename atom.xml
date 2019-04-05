@@ -3,12 +3,151 @@
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-03T13:11:11+08:00</updated>
+  <updated>2019-04-03T22:14:28+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
   </author>
   <generator uri="https://xnote.dev/">xnote</generator>
+
+  <entry>
+    <title type="html"><![CDATA[瞭解 PHP 現行趨勢]]></title>
+    <link href="https://xnote.dev/php-the-right-way.html"/>
+    <updated>2019-04-04T13:53:13+08:00</updated>
+    <id>https://xnote.dev/php-the-right-way.html</id>
+    <content type="html"><![CDATA[
+<p><a href="https://laravel.com/">Laravel</a> 是一套 <strong>PHP Framework</strong>，理解好 PHP 才可以完美駕馭。</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">歷史背景</h2>
+
+<p>PHP 發展至今已超過 20 個年頭（since 1995），網路上充滿過時的文章，容易學習到過時及不安全的寫法。</p>
+
+<p>像是 <code>PHP 5.6</code> 及 <code>PHP 7.0</code> 在 2018 年 12 月時，官方已停止支援安全性更新。但許多整合式軟體及程式寫法仍停留在舊的版本沒有適時更新。</p>
+
+<p>所幸的是，有一群熱心且經驗豐富的開發者寫了一份指南手冊，時至今日仍持續不斷的更新。</p>
+
+<h2 id="toc_1">PHP The Right Way</h2>
+
+<p>無論新手老手建議至少閱讀一遍。可以先不用理解每個怎麼使用或是描述什麼，但至少先有個概念。</p>
+
+<p><a href="https://phptherightway.com/">PHP The Right Way</a></p>
+
+<blockquote>
+<p>裡面有多種翻譯版本，注意翻譯版本可能沒有即時的同步更新<br/>
+建議參照原文閱讀或直接閱讀原文</p>
+</blockquote>
+
+<h2 id="toc_2">關注最新版本</h2>
+
+<p>定期關注最新版本是很有幫助的，瞭解目前程式語言最新動向，並替未來做準備。</p>
+
+<p><a href="https://www.php.net/supported-versions.php">Support version</a><br/>
+<a href="https://www.php.net/releases/">PHP releases</a></p>
+
+<p>經常關注新知有幾項好處</p>
+
+<ol>
+<li><strong>避免用到不合時的技術</strong>：以大部份程式語言來說，在淘汰某項功能之前，會先公告在下版被<strong>標為棄用</strong>，並在下下版<strong>移除功能</strong>，可及早改善寫法來減少技術債。</li>
+<li><strong>學習新的解決方案</strong>：每個新功能推出時，都是為了解決過去的痛點，可以瞭解到痛點原因及為何採用這個解決方案，提升自我視野。</li>
+<li><strong>安排更新計劃</strong>：一個活躍的組織，會不斷的疊代軟體版本，隨著不斷更新勢必會汰換舊版並停止安全性更新，及早安排更新計劃可免於漏洞導致的安全危機。</li>
+</ol>
+
+<blockquote>
+<p>關注最新版本並非一昧的將環境提升至最新版本，每次變更都是一次風險，需綜合評估來安排更新計劃</p>
+</blockquote>
+
+<h2 id="toc_3">過去版本演進</h2>
+
+<p>除了關注未來，瞭解歷史同等重要。觀察過去也可以得到相當多的訊息。</p>
+
+<ul>
+<li><a href="https://www.php.net/releases/7_3_0.php">PHP 7.3 release</a></li>
+<li><a href="https://www.php.net/releases/7_2_0.php">PHP 7.2 release</a></li>
+<li><a href="https://www.php.net/releases/7_1_0.php">PHP 7.1 release</a></li>
+<li><a href="https://www.php.net/releases/7_0_0.php">PHP 7.0 release</a></li>
+</ul>
+
+<h2 id="toc_4">關注 PHP-FIG 規範</h2>
+
+<p>早期組識散亂，缺乏規範導致大家不斷重複造輪子，以及整合不易，因此有了 <a href="https://www.php-fig.org/">PHP-FIG</a> 組織的誕生。</p>
+
+<p>比較重要的規範如下</p>
+
+<ul>
+<li><a href="https://www.php-fig.org/psr/psr-1/">PSR-1: Basic Coding Standard</a></li>
+<li><a href="https://www.php-fig.org/psr/psr-2/">PSR-2: Coding Style Guide</a></li>
+<li><a href="https://www.php-fig.org/psr/psr-4/">PSR-4: Autoloader</a></li>
+</ul>
+
+<blockquote>
+<p><code>PSR-0</code> 已棄用，有興趣的人可以搜尋一下背景故事</p>
+</blockquote>
+
+<h2 id="toc_5">關注熱門 Package</h2>
+
+<p>透過研究 <code>open source</code> 可以學習別人思想及構架，自我學習成長。</p>
+
+<p><a href="https://packagist.org/explore/popular">Packagist</a><br/>
+<a href="https://github.com/trending/php">GitHub trending</a></p>
+
+<h2 id="toc_6">結論</h2>
+
+<ul>
+<li>科技日新月異，不斷的學習對於工程師來說是很重要的事。</li>
+<li><code>PHP</code> 環境和早期開發模式大相逕庭，提供越來越多規模化的設計</li>
+</ul>
+
+]]></content>
+  </entry>
+
+  <entry>
+    <title type="html"><![CDATA[Laravel 教學資源目錄]]></title>
+    <link href="https://xnote.dev/laravel-index.html"/>
+    <updated>2019-04-04T11:07:50+08:00</updated>
+    <id>https://xnote.dev/laravel-index.html</id>
+    <content type="html"><![CDATA[
+<p>自 <strong>2013</strong> 年末接觸 <a href="https://laravel.com/">Laravel</a> 開始，就被優雅的寫法及架構設計所吸引，至今從零到有開發過許多專案，學習並一同成長至今，也很高興看見了 <a href="https://www.facebook.com/groups/laravel.tw/">Laravel 臺灣</a> 在臺灣技術圈的蓬勃發展。</p>
+
+<p>這些年來累積不少的經驗，希望透過筆記整理下來，讓對 <a href="https://laravel.com/docs/master">Laravel</a> 有興趣的人有更多的瞭解。</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">導讀</h2>
+
+<p>其實官方文件 <a href="https://laravel.com/docs/master">Laravel Document</a> 已經寫得相當詳細。<br/>
+若對英文不熟悉的人，網路上也有許多中文翻譯及手把手教學的資源。</p>
+
+<p>因此本系列筆記的重點會著重於</p>
+
+<ul>
+<li>自身的理解來描述概念</li>
+<li>開發上常用技巧或語法</li>
+<li>研究 source code 才知道的用法</li>
+<li>踩過的雷，掉過的坑</li>
+<li>不限於 <code>Laravel</code>，有關的也會提及</li>
+<li>想到什麼寫什麼</li>
+</ul>
+
+<p>所以此系列不適合</p>
+
+<ul>
+<li>快速上手 <code>Laravel</code></li>
+</ul>
+
+<h2 id="toc_1">PHP</h2>
+
+<ul>
+<li><a href="php-the-right-way.html">瞭解 PHP 流行趨勢</a></li>
+</ul>
+
+<h2 id="toc_2">Laravel</h2>
+
+<h2 id="toc_3">Testing</h2>
+
+]]></content>
+  </entry>
 
   <entry>
     <title type="html"><![CDATA[工作管理（jobs control）背景執行使用方法]]></title>
@@ -147,7 +286,7 @@ jobs
 
 <ul>
 <li>除了長時間運行任務外，拿來多工處理也是很方便，例如 <code>vim</code> 一半暫停出來看參數</li>
-<li>現在 <code>terminal</code> 視窗都支援多開，有時候多連幾個 <code>ssh</code> 也是不錯解決辦法</li>
+<li>現在 <code>terminal</code> 視窗都支援多開，有時候多連幾個 <code>ssh</code> 也是簡單快速的辦法</li>
 <li>背景執行還是會 <code>stdout</code> 及 <code>stderr</code> 在畫面上干擾操作，可以 <code>&gt;/dev/null 2&gt;&amp;1</code> 來丟棄訊息，或是 <code>&gt; log.txt</code> 寫入檔案方便檢查</li>
 </ul>
 
