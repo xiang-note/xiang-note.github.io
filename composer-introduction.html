@@ -246,6 +246,11 @@
 
 <p>來略過環境檢查。</p>
 
+<p>在正式環境中，不需要安裝 <code>require-dev</code> 的套件時，可加上 <code>--no-dev</code> 來加速安裝時間及減少空間使用</p>
+
+<pre><code class="language-shell">composer install --no-dev
+</code></pre>
+
 <h3 id="toc_12">update [options] [--] [&lt;packages&gt;]...</h3>
 
 <p>依據 <code>composer.json</code> 版本號條件，更新條件下最新版套件，會同時更新 <code>composer.lock</code> 檔案。</p>
@@ -278,6 +283,8 @@
       <div class="row">
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
+
+            <a href="laravel-composer-json.html" title="Previous Post: 解析 Laravel 的 composer.json 配置">&laquo; 解析 Laravel 的 composer.json 配置</a>
 
           </p>
         </div>
@@ -343,6 +350,12 @@
 
 
             <li class="post">
+              <a href="laravel-composer-json.html">解析 Laravel 的 composer.json 配置</a>
+            </li>
+
+
+
+            <li class="post">
               <a href="composer-introduction.html">Composer 依頼管理工具介紹</a>
             </li>
 
@@ -365,10 +378,6 @@
             </li>
 
 
-
-            <li class="post">
-              <a href="multiple-ssh.html">同台電腦使用多組 GitHub 帳號</a>
-            </li>
 
 
 

@@ -3,12 +3,339 @@
   <title><![CDATA[記筆記，學所學]]></title>
   <link href="https://xnote.dev/atom.xml" rel="self"/>
   <link href="https://xnote.dev/"/>
-  <updated>2019-04-05T18:59:40+08:00</updated>
+  <updated>2019-04-06T18:26:54+08:00</updated>
   <id>https://xnote.dev/</id>
   <author>
     <name><![CDATA[]]></name>
   </author>
   <generator uri="https://xnote.dev/">xnote</generator>
+
+  <entry>
+    <title type="html"><![CDATA[解析 Laravel 的 composer.json 配置]]></title>
+    <link href="https://xnote.dev/laravel-composer-json.html"/>
+    <updated>2019-04-06T15:17:35+08:00</updated>
+    <id>https://xnote.dev/laravel-composer-json.html</id>
+    <content type="html"><![CDATA[
+<p>透過觀察學習是快速瞭解一個東西如何使用的方法之一。</p>
+
+<p>這次就藉由分析 <code>Laravel</code> 的 <code>composer.json</code> 檔，來學習別人是怎麼配置的。</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">完整配置</h2>
+
+<p>以下是 <code>Laravel</code> 完整的 <code>composer.json</code> 內容，將在下方按區塊進行拆解說明。</p>
+
+<p>可以前往 <a href="https://github.com/laravel/laravel/blob/master/composer.json">composer.json</a> 查看目前最新的配置。</p>
+
+<pre><code class="language-javascript">{
+    &quot;name&quot;: &quot;laravel/laravel&quot;,
+    &quot;type&quot;: &quot;project&quot;,
+    &quot;description&quot;: &quot;The Laravel Framework.&quot;,
+    &quot;keywords&quot;: [
+        &quot;framework&quot;,
+        &quot;laravel&quot;
+    ],
+    &quot;license&quot;: &quot;MIT&quot;,
+    &quot;require&quot;: {
+        &quot;php&quot;: &quot;^7.1.3&quot;,
+        &quot;fideloper/proxy&quot;: &quot;^4.0&quot;,
+        &quot;laravel/framework&quot;: &quot;5.8.*&quot;,
+        &quot;laravel/tinker&quot;: &quot;^1.0&quot;
+    },
+    &quot;require-dev&quot;: {
+        &quot;beyondcode/laravel-dump-server&quot;: &quot;^1.0&quot;,
+        &quot;filp/whoops&quot;: &quot;^2.0&quot;,
+        &quot;fzaninotto/faker&quot;: &quot;^1.4&quot;,
+        &quot;mockery/mockery&quot;: &quot;^1.0&quot;,
+        &quot;nunomaduro/collision&quot;: &quot;^3.0&quot;,
+        &quot;phpunit/phpunit&quot;: &quot;^7.5&quot;
+    },
+    &quot;config&quot;: {
+        &quot;optimize-autoloader&quot;: true,
+        &quot;preferred-install&quot;: &quot;dist&quot;,
+        &quot;sort-packages&quot;: true
+    },
+    &quot;extra&quot;: {
+        &quot;laravel&quot;: {
+            &quot;dont-discover&quot;: []
+        }
+    },
+    &quot;autoload&quot;: {
+        &quot;psr-4&quot;: {
+            &quot;App\\&quot;: &quot;app/&quot;
+        },
+        &quot;classmap&quot;: [
+            &quot;database/seeds&quot;,
+            &quot;database/factories&quot;
+        ]
+    },
+    &quot;autoload-dev&quot;: {
+        &quot;psr-4&quot;: {
+            &quot;Tests\\&quot;: &quot;tests/&quot;
+        }
+    },
+    &quot;minimum-stability&quot;: &quot;dev&quot;,
+    &quot;prefer-stable&quot;: true,
+    &quot;scripts&quot;: {
+        &quot;post-autoload-dump&quot;: [
+            &quot;Illuminate\\Foundation\\ComposerScripts::postAutoloadDump&quot;,
+            &quot;@php artisan package:discover --ansi&quot;
+        ],
+        &quot;post-root-package-install&quot;: [
+            &quot;@php -r \&quot;file_exists(&#39;.env&#39;) || copy(&#39;.env.example&#39;, &#39;.env&#39;);\&quot;&quot;
+        ],
+        &quot;post-create-project-cmd&quot;: [
+            &quot;@php artisan key:generate --ansi&quot;
+        ]
+    }
+}
+</code></pre>
+
+<h2 id="toc_1">Package 說明</h2>
+
+<pre><code class="language-javascript">{
+    &quot;name&quot;: &quot;laravel/laravel&quot;,
+    &quot;type&quot;: &quot;project&quot;,
+    &quot;description&quot;: &quot;The Laravel Framework.&quot;,
+    &quot;keywords&quot;: [
+        &quot;framework&quot;,
+        &quot;laravel&quot;
+    ],
+    &quot;license&quot;: &quot;MIT&quot;
+}    
+</code></pre>
+
+<h3 id="toc_2">name</h3>
+
+<p>為 Package 的名稱，格式為 <code>vendor_name/project_name</code>，也是 <code>composer require</code> 時候所使用的名稱。</p>
+
+<h3 id="toc_3">type</h3>
+
+<p>此設定值只是用來標示 Package 性質，並無實質功能</p>
+
+<p>可配置的設定值有，亦可自訂名稱</p>
+
+<ul>
+<li><code>library</code></li>
+<li><code>project</code></li>
+<li><code>metapackage</code></li>
+<li><code>composer-plugin</code></li>
+</ul>
+
+<blockquote>
+<p>詳細說明請參考 <a href="https://getcomposer.org/doc/04-schema.md#type">Schema type</a> 文件</p>
+</blockquote>
+
+<h3 id="toc_4">description</h3>
+
+<p>用來描述 Package 的說明。</p>
+
+<h3 id="toc_5">keywords</h3>
+
+<p>關鍵字，方便搜尋或過濾。</p>
+
+<h3 id="toc_6">license</h3>
+
+<p>版權聲明，若為私有專案可以使用 <code>proprietary</code> 代表。</p>
+
+<h2 id="toc_7">Package links</h2>
+
+<p>用來標示依頼的 Package 以及版本號，或是環境及擴充（extension）需求。</p>
+
+<p><code>require</code> 和 <code>require-dev</code> 差異在於分開正式環境及開發環境所依頼的 Package 或條件。</p>
+
+<pre><code class="language-javascript">{
+    &quot;require&quot;: {
+        &quot;php&quot;: &quot;^7.1.3&quot;,
+        &quot;fideloper/proxy&quot;: &quot;^4.0&quot;,
+        &quot;laravel/framework&quot;: &quot;5.8.*&quot;,
+        &quot;laravel/tinker&quot;: &quot;^1.0&quot;
+    },
+    &quot;require-dev&quot;: {
+        &quot;beyondcode/laravel-dump-server&quot;: &quot;^1.0&quot;,
+        &quot;filp/whoops&quot;: &quot;^2.0&quot;,
+        &quot;fzaninotto/faker&quot;: &quot;^1.4&quot;,
+        &quot;mockery/mockery&quot;: &quot;^1.0&quot;,
+        &quot;nunomaduro/collision&quot;: &quot;^3.0&quot;,
+        &quot;phpunit/phpunit&quot;: &quot;^7.5&quot;
+    }
+}
+</code></pre>
+
+<h3 id="toc_8">依頼說明</h3>
+
+<ul>
+<li><code>&quot;php&quot;: &quot;^7.1.3&quot;</code>：指是 <code>PHP</code> 版本必需大於等於 <code>7.1.3</code>，非所依頼 Package。</li>
+<li><code>fideloper/proxy</code>：用來設定許可的 Proxy Server。</li>
+<li><code>laravel/framework</code>：Laravel Framework 本體。</li>
+<li><code>laravel/tinker</code>：REPL 工具，開發偵錯神器。</li>
+<li><code>beyondcode/laravel-dump-server</code>：監聽 <code>dump</code> 或 <code>dd</code> 並顯示於 console，用來偵錯 API 相當方便。</li>
+<li><code>filp/whoops</code>：提供漂亮及豐富錯誤訊息頁面。</li>
+<li><code>fzaninotto/faker</code>：用來產生假資料。</li>
+<li><code>mockery/mockery</code>：Testing mock 套件。</li>
+<li><code>nunomaduro/collision</code>：提供 console 易讀的錯誤訊息。</li>
+<li><code>phpunit/phpunit</code>：PHP Testing Framework。</li>
+</ul>
+
+<h2 id="toc_9">Config</h2>
+
+<p>提供開發專案設定預值參數使用。</p>
+
+<pre><code class="language-javascript">{   
+    &quot;config&quot;: {
+        &quot;optimize-autoloader&quot;: true,
+        &quot;preferred-install&quot;: &quot;dist&quot;,
+        &quot;sort-packages&quot;: true
+    }
+}    
+</code></pre>
+
+<h3 id="toc_10">optimize-autoloader</h3>
+
+<p>當設定為 <code>true</code> 時，每次產生 <code>autoload</code> 都會進行最佳化。</p>
+
+<h3 id="toc_11">preferred-install</h3>
+
+<p>設定偏好 Package 下載來源，可配置 <code>source</code>、<code>dist</code>、<code>auto</code>。</p>
+
+<p><code>dist</code> 是指偏好透過下載 GitHub <code>zip</code> 檔，可以加速下載安裝速度。</p>
+
+<h3 id="toc_12">sort-packages</h3>
+
+<p>當設定為 <code>true</code> 時，<code>require</code> 及 <code>require-dev</code> 會按照名稱排序。</p>
+
+<blockquote>
+<p>詳細說明請參考 <a href="https://getcomposer.org/doc/06-config.md">Schema config</a> 文件</p>
+</blockquote>
+
+<h2 id="toc_13">Extra</h2>
+
+<p>做為擴充當做變數使用，可以是任意自訂值。</p>
+
+<pre><code class="language-javascript">{
+    &quot;extra&quot;: {
+        &quot;laravel&quot;: {
+            &quot;dont-discover&quot;: []
+        }
+    }
+}    
+</code></pre>
+
+<h3 id="toc_14">Auto Discover</h3>
+
+<p>這是 <code>Laravel 5.5</code> 版時推出的功能，免除了使用第三方 Laravel Package 時都要手動註冊的步驟。</p>
+
+<p>而 <code>dont-discover</code> 就是取消指定 Package 的 Auto Discover 功能。</p>
+
+<h2 id="toc_15">Autoload</h2>
+
+<p>跟 <code>Composer</code> 說明自動載入 source code 的方法。</p>
+
+<p>可配置值的設定值有</p>
+
+<ul>
+<li>psr-4</li>
+<li>psr-0</li>
+<li>classmap</li>
+<li>files</li>
+</ul>
+
+<pre><code class="language-javascript">{
+    &quot;autoload&quot;: {
+        &quot;psr-4&quot;: {
+            &quot;App\\&quot;: &quot;app/&quot;
+        },
+        &quot;classmap&quot;: [
+            &quot;database/seeds&quot;,
+            &quot;database/factories&quot;
+        ]
+    },
+    &quot;autoload-dev&quot;: {
+        &quot;psr-4&quot;: {
+            &quot;Tests\\&quot;: &quot;tests/&quot;
+        }
+    }
+}    
+</code></pre>
+
+<blockquote>
+<p>詳細說明請參考 <a href="https://getcomposer.org/doc/04-schema.md#autoload">Schema autoload</a> 文件</p>
+</blockquote>
+
+<h2 id="toc_16">Root Settings</h2>
+
+<p>關於 Root Package 使用的設定</p>
+
+<pre><code class="language-javascript">{
+    &quot;minimum-stability&quot;: &quot;dev&quot;,
+    &quot;prefer-stable&quot;: true
+}    
+</code></pre>
+
+<h3 id="toc_17">minimum-stability</h3>
+
+<p>在安裝 Package 時，設定穩定性要求的下限</p>
+
+<p>可配置的設定值有</p>
+
+<ul>
+<li><code>dev</code></li>
+<li><code>alpha</code></li>
+<li><code>beta</code></li>
+<li><code>RC</code></li>
+<li><code>stable</code></li>
+</ul>
+
+<h3 id="toc_18">prefer-stable</h3>
+
+<p>若設定值為 <code>true</code>，則偏好使用穩定版本的 Package。</p>
+
+<h2 id="toc_19">Scripts</h2>
+
+<p>腳本設定，並且 <code>Composer</code> 有提供各式各樣的 <code>events</code> 可以串接，亦可自訂腳本名稱，透過 <code>composer run-script</code> 來執行</p>
+
+<pre><code class="language-javascript">{
+    &quot;scripts&quot;: {
+        &quot;post-autoload-dump&quot;: [
+            &quot;Illuminate\\Foundation\\ComposerScripts::postAutoloadDump&quot;,
+            &quot;@php artisan package:discover --ansi&quot;
+        ],
+        &quot;post-root-package-install&quot;: [
+            &quot;@php -r \&quot;file_exists(&#39;.env&#39;) || copy(&#39;.env.example&#39;, &#39;.env&#39;);\&quot;&quot;
+        ],
+        &quot;post-create-project-cmd&quot;: [
+            &quot;@php artisan key:generate --ansi&quot;
+        ]
+    }
+}    
+</code></pre>
+
+<h3 id="toc_20">post-autoload-dump</h3>
+
+<p>當執行 <code>composer install</code>、<code>composer update</code> 或 <code>dump-autoload</code> 指令後觸發。</p>
+
+<h3 id="toc_21">post-root-package-install</h3>
+
+<p>當執行 <code>composer create-project</code> 時，Root Package 安裝完後觸發。</p>
+
+<h3 id="toc_22">post-create-project-cmd</h3>
+
+<p>當執行 <code>composer create-project</code> 後觸發。</p>
+
+<blockquote>
+<p>詳細說明請參考 <a href="https://getcomposer.org/doc/articles/scripts.md">Schema scripts</a> 文件</p>
+</blockquote>
+
+<h2 id="toc_23">結論</h2>
+
+<ul>
+<li>透過分析專案 <code>composer.json</code> 可以快速瞭解用了哪些套件，方便熟悉一個專案。</li>
+<li>完整設定可以參考 <a href="https://getcomposer.org/doc/04-schema.md">Composer Json Schema</a> 文件</li>
+</ul>
+
+]]></content>
+  </entry>
 
   <entry>
     <title type="html"><![CDATA[Composer 依頼管理工具介紹]]></title>
@@ -156,6 +483,11 @@
 </code></pre>
 
 <p>來略過環境檢查。</p>
+
+<p>在正式環境中，不需要安裝 <code>require-dev</code> 的套件時，可加上 <code>--no-dev</code> 來加速安裝時間及減少空間使用</p>
+
+<pre><code class="language-shell">composer install --no-dev
+</code></pre>
 
 <h3 id="toc_12">update [options] [--] [&lt;packages&gt;]...</h3>
 
@@ -324,6 +656,10 @@
 </ul>
 
 <h2 id="toc_2">Laravel</h2>
+
+<ul>
+<li><a href="laravel-composer-json.html">解析 Laravel 的 composer.json 配置</a></li>
+</ul>
 
 <h2 id="toc_3">Testing</h2>
 

@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://xnote.dev/</loc>
-    <lastmod>2019-04-05T18:59:46+08:00</lastmod>
+    <lastmod>2019-04-06T18:26:57+08:00</lastmod>
+  </url>
+
+  <url>
+    <loc>https://xnote.dev/laravel-composer-json.html</loc>
+    <lastmod>2019-04-06T15:17:35+08:00</lastmod>
   </url>
 
   <url>
